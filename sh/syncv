@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# of the form user@hostname
+user_server="$SCRATCH_USER_SERVER"
+
+# of the form /var/www/example
+base_path="$SCRATCH_BASE_PATH"
+
+# of the form http://scratch.varnerin.info
+base_url="$SCRATCH_BASE_URL"
+
+# use given name or default to name of current directory
+current_dir=`basename \`pwd\``
+
+# first see if a .syncv file exists
+if [ -e .syncv ]
+then
+	target_dir=`cat .syncv`
+fi
+
+# allow overrides by the passed in name
+if [ ! -z "$1" ]
+then
+	target_dir="$1"
+fi
+
+# if all else fails use the current directory as the name,
+# but don't save that value to .syncv
+if [ -z "$target_dir" ]
+then
+	target_dir="$current_dir"
+else
+	echo "$target_dir" > .syncv
+fi
+
+# copy entire current folder to the site, ignoring git files
+rsync -av --exclude '.git/' "`pwd`/" "$user_server:$base_path/$target_dir"
+
+echo "Current dir available at $base_url/$target_dir"
