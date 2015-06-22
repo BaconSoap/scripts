@@ -1,6 +1,6 @@
 # BaconSoap/Scripts
 
-Collection of scripts on my computers that are small enough that they don't deserver their own repos.
+Collection of scripts on my computers that are small enough that they don't deserve their own repos.
 
 ## Scripts
 
