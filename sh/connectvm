@@ -1,0 +1,21 @@
+#!/bin/bash
+
+WINDOWSHOST=$WINDOWS_VM_SMB
+
+# make sure the mount dir on host exists
+if [ ! -d "~/smb/$1" ]; then
+	mkdir ~/smb/$1
+fi
+
+# if there's something in the mount, because either share is active or files
+#  are hanging around, cancel the mount process
+if find ~/smb/$1 -maxdepth 0 -empty | read v; then
+	rm -rf ~/smb/$1
+	mkdir ~/smb/$1
+	mount -t smbfs "$WINDOWSHOST/$1" ~/smb/$1/
+fi
+
+# move into the mount and enumerate all files to fill the cache
+cd ~/smb/$1
+ls -laR > /dev/null
+
