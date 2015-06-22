@@ -8,9 +8,7 @@ Collection of scripts on my computers that are small enough that they don't dese
 
 Run `./install.sh` to symlink all of the scripts to the designated install folder - defaults to `/usr/local/bin`. Writes all symlinked files to `.linked_files`.
 
-## `sh/`
-
-### `syncv` - shovel the current folder to a server
+### `sh/syncv` - shovel the current folder to a server
 
 Copies the current folder to a remote server - great for throwing up folders as static sites (see [scratch.varnerin.info](http://scratch.varnerin.info)). Requires `rsync` to be installed on local system.
 
@@ -29,7 +27,7 @@ By default, `syncv` needs the following environment variables set:
 - `SCRATCH_BASE_PATH="/var/www/example"`
 - `SCRATCH_BASE_URL="http://scratch.varnerin.info"`
 
-### `connectvm` - connect to a vm over smb
+### `sh/connectvm` - connect to a vm over smb
 
 Mounts an SMB share to `~/smb/share_name` and enumerates the file list for faster subsequent access.
 
@@ -42,7 +40,7 @@ By default, `connectvm` needs the following environment variables set:
 
 - `WINDOWS_VM_SMB="//user@hostname"`
 
-### `flushdns` - flushes the DNS cache
+### `sh/flushdns` - flushes the DNS cache
 
 Flushes the system's DNS cache. Requires `sudo` permissions.
 
